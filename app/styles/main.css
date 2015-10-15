@@ -27,6 +27,34 @@ body {
 .topbar-left{
     float:left;
 }
+.topbar-right{
+    position:absolute;
+    top:0;
+    right:0;
+    background:none;
+}
+.topbar-right div{
+    position:relative;
+    margin-right:20px;
+}
+.topbar-right select, .topbar-right input, .topbar-right label{
+    display:inline;
+    cursor:pointer;
+    vertical-align: middle;
+}
+.topbar-right input{
+    width:20px;
+    background:none;
+}
+.topbar-right-menu{
+    line-height:50px;
+}
+.float-left{
+    float:left;
+}
+.float-right{
+    float:right;
+}
 .topbar-logo{
     display: block;
     width: 50px;
@@ -241,18 +269,24 @@ div aside a:active{
     line-height:40px;
 }
 .footer{
-    height:540px;
-    width:100%;
+    position:fixed;
+    bottom:0;
+    left:190px;
+    right:10px;
+    height:440px;
     margin-top:10px;
 }
+.footer .left-sidebar-title{
+    background:#ddd;
+}
 .footer-result{
-    height:500px;
+    height:400px;
     width:100%;
     background:#FFF;
     padding:10px 20px;
 }
 #chartResults{
-    height:480px;
+    height:380px;
     width:100%;
 }
 .tooltip{

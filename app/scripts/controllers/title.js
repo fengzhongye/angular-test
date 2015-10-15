@@ -10,6 +10,8 @@ define(['../app'], function(app) {
 			mainRight:true,
 			mainDown:false
 		};
+		$scope.countTo = 100;
+		$scope.countFrom = 0;
 		$scope.toggleLeftRight = function(){
 			$scope.options.isSmall = !$scope.options.isSmall;
 			$scope.options.isLarge = !$scope.options.isLarge;

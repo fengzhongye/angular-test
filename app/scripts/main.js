@@ -68,6 +68,6 @@ require.config({
     ]
 });
 
-require(['angular', './controllers/main', './controllers/chart', './controllers/options', './controllers/timeline', './controllers/title', './controllers/tools'], function(ng){
+require(['angular', './controllers/header', './controllers/main', './controllers/chart', './controllers/options', './controllers/timeline', './controllers/title', './controllers/tools', './directives/count'], function(ng){
 	ng.bootstrap(document, ['myapp']);
 });

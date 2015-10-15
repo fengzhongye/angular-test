@@ -30,6 +30,16 @@
                 <span class='icon menu-options'>配置选项</span>
             </a>
         </div>
+        <div class="topbar-head topbar-right clearfix" ng-controller="HeaderCtrl">
+            <div class="float-left topbar-right-menu">
+                <select class="form-control" ng-model="defaultChart" ng-options="chart.name for chart in charts">
+                </select>
+            </div>
+            <div class="float-right topbar-right-menu">
+                <input id="realRefresh" type="checkbox" class="form-control" ng-model="isRealTime"/>
+                <label for="realRefresh">开启实时预览</label>
+            </div>
+        </div>
     </header>
     <div class='container-fluid' ng-controller='MainCtrl'>
         <aside class='aside-menu' ng-class="{'aside-menu-small':options.isSmall, 'aside-menu':options.isLarge}">
@@ -501,7 +511,7 @@
             </div>
             <div id='chartResult' class='footer'>
                 <div class='left-sidebar-title'>
-                    <p class='ptitle'>配置结果显示</p>
+                    <p class='ptitle'>实时结果预览</p>
                 </div>
                 <div class='footer-result'>
                     <div id='chartResults'></div>
@@ -509,7 +519,6 @@
             </div>
         </div>
     </article>
-</div>
 <!--
     <div class="header bg-primary">
 <div class="navbar-header">
