@@ -1,0 +1,535 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>实时图表配置</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+<body>
+    <header class='header'>
+        <div class="topbar-head topbar-left">
+            <a href="#/" target="_self" class="topbar-logo topbar-left">
+                <span class='icon-logo'></span>
+            </a>
+            <a href="#/" target="_self" class="topbar-home-link topbar-left remove-underline">
+                <span>图表实时配置</span>
+            </a>
+        </div>
+        <div class="topbar-head topbar-left">
+            <a ng-href="" target="_self" class="topbar-home-link topbar-left remove-underline">
+                <span class='icon menu-options'>配置选项</span>
+            </a>
+        </div>
+    </header>
+    <div class='container-fluid' ng-controller='MainCtrl'>
+        <aside class='aside-menu' ng-class="{'aside-menu-small':options.isSmall, 'aside-menu':options.isLarge}">
+            <div class='toggle icon' style="color:#FFF;" ng-click='toggleLeftRight()'></div>
+            <div class='siderbar-nav' ng-class="{'main-nav-active':options.mainDown}" ng-click="toggleMainSiderbar()" tooltip-placement="right" uib-tooltip="动态配置图表" tooltip-class="tooltip">
+                <a ng-href='' class='remove-underline' style="color:#FFF;overflow:hidden;">
+                    <span class='icon right-arrow' ng-class="{'down-arrow':options.mainRight, 'right-arrow':options.mainDown}"></span>
+                    <span ng-show='options.isLarge'>配置项</span>
+                    <span class='icon right-settings' ng-show='options.isLarge'></span>
+                </a>
+            </div>
+            <ul ng-class="{'active':options.showMainMenu, 'hide':options.hideMainMenu}">
+                <li>
+                    <a href='#chartOptions'>
+                        <span class='icon right-2a'></span>
+                        图表选项
+                    </a>
+                </li>
+                <li>
+                    <a href='#chartTimeline'>
+                        <span class='icon right-3a'></span>
+                        时间轴配置
+                    </a>
+                </li>
+                <li>
+                    <a href='#/title'>
+                        <span class='icon right-4a'></span>
+                        标题配置
+                    </a>
+                </li>
+                <li>
+                    <a href='#/tools'>
+                        <span class='icon right-5a'></span>
+                        工具箱配置
+                    </a>
+                </li>
+                <li>
+                    <a href='#chartResult'>
+                        <span class='icon right-5a'></span>
+                        结果显示
+                    </a>
+                </li>
+                <li>
+                    <a href='#/tools'>
+                        <span class='icon right-5a'></span>
+                        结果保存
+                    </a>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <article class='wrapper' ng-class="{'wrapper-large':options.isSmall, 'wrapper':options.isLarge}">
+        <div class='sidebar' ng-controller='ChartCtrl'>
+            <div id='chartOptions' class='left-sidebar' ng-controller="OptionsCtrl">
+                <div class='left-sidebar-title'>
+                    <div>
+                        <p class='ptitle'>图表选项配置</p>
+                    </div>
+                </div>
+                <div class='left-sidebar-content clearfix'>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>全图默认背景：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>颜色列表：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>是否支持渲染图片：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>是否支持拖拽重计算：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>是否开启动画：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id='chartTimeline' class='left-sidebar' ng-controller="TimelineCtrl">
+                <div class='left-sidebar-title'>
+                    <div>
+                        <p class='ptitle'>时间轴配置</p>
+                    </div>
+                </div>
+                <div class='left-sidebar-content clearfix'>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>是否显示：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>一级层叠控制：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>二级层叠控制：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>时间类型：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>是否支持合并：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>是否实时显示：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>左上角横坐标：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>左上角纵坐标：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>右上角横坐标：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>右上角纵坐标：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>时间轴宽度：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>时间轴高度：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>背景颜色：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>边框线宽：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>边框颜色：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>内部边距：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>控制器位置：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>自动播放：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>循环播放：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>轴线样式：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>标签文本：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>时间轴当前点：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>控制器样式：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>轴点样式：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>轴点大小：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>索引位置：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-4 align-right">
+                                    <label>时间数据：</label>
+                                </div>
+                                <div class="col-xs-6 align-left">
+                                    <input type='text' class='form-control'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id='chartTitle' class='left-sidebar' ng-controller="TitleCtrl">
+                <div class='left-sidebar-title'>
+                    <div>
+                        <p class='ptitle'>图表标题配置</p>
+                    </div>
+                </div>
+                <div class='left-sidebar-content clearfix'>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <label>默认背景：</label>
+                            <input type='text' class='form-control'/>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <label>图片渲染</label>
+                            <input type='text' class='form-control'/>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <label>图片渲染</label>
+                            <input type='text' class='form-control'/>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <label>图片渲染</label>
+                            <input type='text' class='form-control'/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id='chartTools' class='left-sidebar' ng-controller="ToolsCtrl">
+                <div class='left-sidebar-title'>
+                    <div>
+                        <p class='ptitle'>图表工具箱配置</p>
+                    </div>
+                </div>
+                <div class='left-sidebar-content clearfix'>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <label>默认背景：</label>
+                            <input type='text' class='form-control'/>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <label>图片渲染</label>
+                            <input type='text' class='form-control'/>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <label>图片渲染</label>
+                            <input type='text' class='form-control'/>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <label>图片渲染</label>
+                            <input type='text' class='form-control'/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id='chartResult' class='footer'>
+                <div class='left-sidebar-title'>
+                    <p class='ptitle'>配置结果显示</p>
+                </div>
+                <div class='footer-result'>
+                    <div id='chartResults'></div>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<!--
+    <div class="header bg-primary">
+<div class="navbar-header">
+    <a class="navbar-brand white" href="#/">实时图表配置</a>
+</div>
+<div class="collapse navbar-collapse" id="js-navbar-collapse">
+    <ul class="nav navbar-nav">
+        <li class="active">
+            <a href="#/">首页</a>
+        </li>
+        <li>
+            <a ng-href="#/about">关于</a>
+        </li>
+    </ul>
+</div>
+</div>
+<div class="container content">
+<div ng-view=""></div>
+</div>
+-->
+<script src="bower_components/requirejs/require.js" data-main="scripts/main.js"></script>
+</body>
+</html>

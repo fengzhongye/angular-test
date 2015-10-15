@@ -1,0 +1,51 @@
+<div class='sidebar'>
+    <div class='left-sidebar'>
+        <ul>
+            <li ng-repeat='item in controlItems'>
+                <a href="#">{{item.name}}</a>
+            </li>
+        </ul>
+        <!--
+        <uib-accordion close-others="oneAtATime">
+            <uib-accordion-group heading="图表选项" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+              图表选项配置
+            </uib-accordion-group>
+            <uib-accordion-group heading="时间轴" ng-repeat="group in groups">
+              时间轴配置
+            </uib-accordion-group>
+            <uib-accordion-group heading="标题">
+              标题配置
+            </uib-accordion-group>
+            <uib-accordion-group heading="工具箱">
+              工具箱配置
+            </uib-accordion-group>
+        </uib-accordion>
+        -->
+    </div>
+    <div class="right-sidebar">
+      <!--
+      <script type="text/ng-template" id="group-template.html">
+        <div class="panel {{panelClass || 'panel-default'}}">
+          <div class="panel-heading">
+            <h4 class="panel-title" style="color:#fa39c3">
+              <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading"><span
+                ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+            </h4>
+          </div>
+          <div class="panel-collapse collapse" uib-collapse="!isOpen">
+            <div class="panel-body" style="text-align: right" ng-transclude></div>
+          </div>
+        </div>
+      </script>
+      -->
+      
+      <p><button class="btn btn-lg btn-success" ng-click="show()">脚本下载</button></p>
+
+
+      <div class="row marketing">
+      <div id='main' style='width:100%;min-height:500px;'>
+      </div>
+    </div>
+    </div>
+    
+</div>

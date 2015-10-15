@@ -1,0 +1,45 @@
+<div class="container">
+	<input type='text' class='form-control' ng-model='predicate'/>
+	<table class='table table-bordered table-hover'>
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat='friend in friends | filter:filterFunc | page'>
+				<td>{{$index + 1}}</td>
+				<td>{{friend.name}}</td>
+				<td>{{friend.age}}</td>
+				<td>{{friend.gender}}</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan='4' style='text-align:right;'>
+					<ul class="pagination" style='margin:0;'>
+						<li class="disabled" ng-click="currentPage=1;load()">
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li class="active" ng-repeat='page in pages'>
+							<a href="#">
+								{{page}}
+								<span class="sr-only">{{page}}</span>
+							</a>
+						</li>
+						<li ng-click="currentPage=totalPage;load()">
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
